@@ -40,7 +40,7 @@ require('gulp-awaitable-tasks')(gulp);
         .pipe(cssmin())
         .pipe(gulp.dest('.'));
  });
-
+```
 
 
 
