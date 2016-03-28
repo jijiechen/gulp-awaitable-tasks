@@ -1,0 +1,28 @@
+{
+  "name": "gulp-awaitable-tasks",
+  "version": "1.0.0",
+  "description": "add awaitable tasks for gulp",
+  "main": "./index.js",
+  "author": "Jijie Chen",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  },
+  "homepage": "https://github.com/jijiechen/gulp-awaitable-tasks",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jijiechen/gulp-awaitable-tasks.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "gulpfriendly",
+    "async",
+    "await",
+    "pipe",
+    "promise",
+    "sequence",
+    "gulp"
+  ]
+}
