@@ -7,6 +7,10 @@
   "engines": {
     "node": ">= 4.0.0"
   },
+  "dependencies": {
+    "end-of-stream": ">=1.1.0",
+    "stream-consume": ">=0.1.0"
+  },
   "devDependencies": {
     "gulp": "^3.8.10"
   },

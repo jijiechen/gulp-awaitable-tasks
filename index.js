@@ -1,5 +1,6 @@
 
-// gulp  use...
+var onEndOfStream = require('end-of-stream'),
+    consumeStream = require('stream-consume')
 var gulpTask;
 
 function defineTask(name, dependencies, taskFn){
@@ -46,18 +47,11 @@ module.exports = function (gulp) {
     if(!gulp){
         gulp = require('gulp');
     }
-    gulpTask = gulp.task;
-    gulp.task = defineTask;
+    gulpTask = gulp.task.bind(gulp);
+    gulp.task = defineTask.bind(gulp);
 };
-module.exports.restore = function (gulp) {
-    if(!gulpTask){
-        return;
-    }
-
-    if(!gulp){
-        gulp = require('gulp');
-    }
-    gulp.task = gulpTask;
+module.exports.originalGulpTask = function () {
+    return gulpTask;
 };
 
 
