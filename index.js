@@ -1,6 +1,6 @@
 
 // gulp  use...
-var gulpEngine;
+var gulpTask;
 
 function defineTask(name, dependencies, taskFn){
     if(arguments.length < 3 && typeof dependencies === 'function'){
@@ -9,13 +9,13 @@ function defineTask(name, dependencies, taskFn){
     }
 
     if(!taskFn){
-        gulpEngine.task(name, dependencies);
+        gulpTask(name, dependencies);
     }else if(taskFn.constructor.name === 'GeneratorFunction'){
-        gulpEngine.task(name, dependencies, function (callback) {
+        gulpTask(name, dependencies, function (callback) {
             arrangeAsyncSteps(taskFn(), callback);
         });
     }else {
-        gulpEngine.task(name, dependencies, taskFn);
+        gulpTask(name, dependencies, taskFn);
     }
 
     function arrangeAsyncSteps(gen, cb){
@@ -43,14 +43,22 @@ function defineTask(name, dependencies, taskFn){
 
 
 module.exports = function (gulp) {
-    gulpEngine = gulp;
-    if(!gulpEngine){
-        gulpEngine = require('gulp');
+    if(!gulp){
+        gulp = require('gulp');
+    }
+    gulpTask = gulp.task;
+    gulp.task = defineTask;
+};
+module.exports.restore = function (gulp) {
+    if(!gulpTask){
+        return;
     }
 
-    return defineTask;
+    if(!gulp){
+        gulp = require('gulp');
+    }
+    gulp.task = gulpTask;
 };
-
 
 
 
